@@ -1,2 +1,2 @@
 # GeekBrains
-GB education
+GB education tasks
