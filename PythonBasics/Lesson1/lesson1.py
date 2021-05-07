@@ -90,7 +90,6 @@ def task5():
     is_profitable = earnings > expenses
     company_result = 'profitable' if is_profitable else 'non profitable'
     print ('The company is ' + company_result)
-
     if is_profitable == False:
         pass
 
@@ -122,14 +121,15 @@ def task6():
 
 
 # MAIN TASKS FLOW    
-#task1()
 
-#task2()
+task1()
+
+task2()
 
 task3()
 
-#task4()
+task4()
 
-#task5()
+task5()
 
-#task6()
+task6()
