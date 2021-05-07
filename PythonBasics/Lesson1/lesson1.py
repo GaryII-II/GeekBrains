@@ -49,14 +49,10 @@ def task3():
  
     print ("Task 3")
    
-    while(True):
-        user_value = int(input('Magic number. Input any digit from 1 to 9 : '))
+    user_value = input('Input any number: ')
 
-        if user_value in range(1,9):
-            break
-  
-    print('Magic sum equals ', user_value + user_value*11 + user_value*111 )
-    
+    print('Magic sum ', user_value, user_value+user_value, user_value+user_value+user_value)    
+    print('Magic sum equals ', int(user_value) + (int)(user_value+user_value) + (int)(user_value+user_value+user_value) )    
 
 # Find the largest digit in the number
 def task4():
@@ -94,6 +90,10 @@ def task5():
     is_profitable = earnings > expenses
     company_result = 'profitable' if is_profitable else 'non profitable'
     print ('The company is ' + company_result)
+    if is_profitable == False:
+        pass
+
+    print ('The company profitability is {0}'.format( (earnings - expenses)/earnings * 100.0))
     
     employees = int(input('Number of company employees = '))
 
@@ -121,6 +121,7 @@ def task6():
 
 
 # MAIN TASKS FLOW    
+
 task1()
 
 task2()
