@@ -1,0 +1,5 @@
+﻿Math: LC=150 PR=40 -
+Physics: LC=100 - LB=60
+Chemistry: LC=150 PR=20 LB=20
+Programming: LC=40 PR=80 -
+English: - PR=70 -

@@ -1,0 +1,4 @@
+Petrov 25000
+Ignatov 15000
+Vorobey 10000
+Antonov 22000
