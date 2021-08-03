@@ -1,0 +1,58 @@
+REQUESTS
+==============================
+
+UPDATE vk.friendship_request SET
+    updated_at = NULL
+WHERE updated_at = 0;
+
+SELECT * FROM vk.friendship_request WHERE from_user_id = to_user_id;
+
+
+UPDATE `like` SET 
+    media_id = NULL,
+    message_id = NULL
+WHERE id < 34;
+
+UPDATE `like` SET 
+    post_id = NULL,
+    message_id = NULL
+WHERE id BETWEEN 34 AND 66;
+
+UPDATE `like` SET 
+    post_id = NULL,
+    media_id = NULL
+WHERE id > 66;
+
+
+UPDATE vk.message SET
+    read_at = NULL
+WHERE read_at = 0;
+
+
+DELETE FROM vk.message 
+WHERE created_at LIKE '1973%';
+
+SELECT text FROM vk.post  
+ORDER BY RAND ( )  
+LIMIT 1;
+
+INSERT INTO vk.community (admin_user_id, name)
+SELECT vk.user.id, 'rangers'
+FROM vk.user
+
+
+COURSE WORK
+=============================
+Test Service:
+- Users
+- User roles
+- Test Projects (consist from tests)
+- Tests 
+- Tested units
+- Tested units types
+- Test Tasks (tests targeted to 1 or many tested units)
+- Task Schedule (when to start task)
+- Task Results (task run with the result PASS / FAIL)
+- Test files (assets used in the tests)
+
+
