@@ -1,0 +1,88 @@
+OPERATORS
+=================
+TASK1
+=========================
+UPDATE vk.user SET created_at = NOW(),  updated_at = NOW();
+
+# id, email, phone, password_hash, created_at, updated_at, deleted_at
+'1', 'ysawayn@example.org', '79497430799', '1ddfb5597edac0f8a747d776d1d774ef014f1980', '2021-08-05 21:14:12', '2021-08-05 21:14:12', NULL
+'2', 'franecki.kane@example.net', '79271106487', '05e6f7842bfd79eba59e12d598f1852aafc6d159', '2021-08-05 21:14:12', '2021-08-05 21:14:12', NULL
+'3', 'fgottlieb@example.org', '79157932929', '54568e01740324e24dfea1b2fe933bafcf13b59a', '2021-08-05 21:14:12', '2021-08-05 21:14:12', NULL
+'4', 'phoebe88@example.net', '79556337096', '002e4cd6bac273917b0faa6090262b214f79478a', '2021-08-05 21:14:12', '2021-08-05 21:14:12', NULL
+
+TASK2
+========================
+DROP TABLE IF EXISTS `events`;
+CREATE TABLE  `events` (
+created_at varchar(245),
+updated_at varchar(245)
+);
+
+INSERT INTO `events`
+VALUES ('20.10.2017 8:10', '21.10.2017 8:10'),
+('20.10.2018 8:10', '21.10.2018 8:10'),
+('20.10.2019 8:10', '22.10.2019 9:10'),
+('20.10.2020 8:10', '23.10.2020 10:10'),
+('20.10.2021 8:10', '24.10.2021 11:10'),
+('20.10.2000 8:10', '25.10.2022 12:10')
+;
+
+I am not sure if I need
+ just SELECT STR_TO_DATE(`created_at`, '%d.%m.%Y %H:%i'),STR_TO_DATE(`updated_at`, '%d.%m.%Y %H:%i') FROM `events`;
+
+OR ALTER table as below?
+
+ALTER TABLE `events` DROP COLUMN `created`;
+ALTER TABLE `events` ADD COLUMN `created` DATETIME;
+UPDATE `events`
+SET created = str_to_date(`created_at`, '%d.%m.%Y %H:%i');
+ALTER TABLE `events` DROP COLUMN `created_at`;
+ALTER TABLE `events` CHANGE `created` `created_at` DATETIME;
+
+ALTER TABLE `events` DROP COLUMN `updated`;
+ALTER TABLE `events` ADD COLUMN `updated` DATETIME;
+UPDATE `events`
+SET updated = str_to_date(`updated_at`, '%d.%m.%Y %H:%i');
+ALTER TABLE `events` DROP COLUMN `updated_at`;
+ALTER TABLE `events` CHANGE `updated` `updated_at` DATETIME;
+
+# created_at, updated_at
+'2017-10-20 08:10:00', '2017-10-21 08:10:00'
+'2018-10-20 08:10:00', '2018-10-21 08:10:00'
+'2019-10-20 08:10:00', '2019-10-22 09:10:00'
+'2020-10-20 08:10:00', '2020-10-23 10:10:00'
+'2021-10-20 08:10:00', '2021-10-24 11:10:00'
+'2000-10-20 08:10:00', '2022-10-25 12:10:00'
+
+TASK3
+=======================
+SELECT id, value FROM storehouses_products 
+WHERE value > 0
+ORDER BY value ASC;
+
+I do not know how to move 0 to the end.
+May be using FIELD.
+
+TASK4
+======================
+SELECT * FROM lesson4.users
+WHERE birthday_at LIKE '%-05-%' OR birthday_at LIKE '%-08-%';
+
+TASK5
+============
+SELECT * FROM catalogs WHERE id IN (5, 1, 2) ORDER BY FIELD(id, 5, 1, 2);
+
+
+AGGREGATION
+====================
+TASK1
+=======================
+SELECT FLOOR(AVG(TIMESTAMPDIFF(MONTH, birthday_at, NOW())) / 12) FROM lesson4.users;
+
+TASK2
+=======================
+SELECT COUNT(*), DAYOFWEEK(birthday_at) AS dayw FROM lesson4.users GROUP BY dayw ORDER BY dayw ASC ;
+
+TASK3
+=======================
+SELECT EXP(SUM(LOG(id))) FROM lesson4.users;
