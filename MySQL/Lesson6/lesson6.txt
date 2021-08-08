@@ -1,0 +1,61 @@
+TASK2
+===================
+Please, help prompt me the approach. I want to solve and send a patch. I was blocked on
+
+SELECT
+from_user_id,
+to_user_id
+FROM vk.message
+WHERE
+  (vk.message.to_user_id = 65 AND vk.message.from_user_id IN (
+    SELECT IF(vk.friendship_request.from_user_id = 65, vk.friendship_request.to_user_id, vk.friendship_request.from_user_id) AS friend_id
+    FROM vk.friendship_request
+    WHERE
+      (vk.friendship_request.from_user_id = 65 OR vk.friendship_request.to_user_id = 65)
+      AND `status` = 1)) OR
+ (vk.message.from_user_id = 65 AND vk.message.to_user_id IN (
+    SELECT IF(vk.friendship_request.from_user_id = 65, vk.friendship_request.to_user_id, vk.friendship_request.from_user_id) AS friend_id
+    FROM vk.friendship_request
+    WHERE
+      (vk.friendship_request.from_user_id = 65 OR vk.friendship_request.to_user_id = 65)
+      AND `status` = 1))
+ORDER BY vk.message.to_user_id DESC;
+
+
+TASK3
+=====================
+-- TASK 3
+SELECT
+    SUM(likes) as total_likes
+FROM (
+    SELECT 
+        user_id, 
+        birthday,
+        (SELECT COUNT(user_id) FROM vk.like WHERE vk.like.user_id = vk.profile.user_id) as likes
+    FROM vk.profile
+    ORDER BY birthday DESC
+    LIMIT 10 ) as users_list
+
+TASK4
+=====================
+SELECT COUNT(gender) AS counter, gender FROM vk.profile
+WHERE user_id IN (
+    SELECT vk.like.user_id FROM vk.like WHERE vk.like.user_id = vk.profile.user_id
+)
+GROUP BY gender
+ORDER BY counter DESC
+LIMIT 1
+
+TASK5
+====================
+SELECT ids, (communities + likes + friends + posts) AS activities 
+FROM (
+    SELECT id as ids, 
+        (SELECT COUNT(vk.user_community.user_id)  FROM user_community WHERE vk.user_community.user_id = id) AS communities, 
+        (SELECT COUNT(vk.like.user_id)  FROM vk.like WHERE vk.like.user_id = id) AS likes,
+        (SELECT COUNT(vk.friendship_request.from_user_id)  FROM vk.friendship_request WHERE from_user_id = id) AS friends,
+        (SELECT COUNT(vk.post.user_id)  FROM vk.post WHERE vk.post.user_id = id) AS posts
+	FROM vk.user 
+) as users_activities
+ORDER BY activities ASC
+LIMIT 10
