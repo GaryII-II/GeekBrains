@@ -1,0 +1,53 @@
+TASK1
+=========================
+ORDERS
+# id	user_id	created_at		updated_at
+1	1	2021-08-10 21:36:03	
+2	2	2021-08-10 21:36:03	
+3	4	2021-08-10 21:36:03	
+4	5	2021-08-10 21:36:03	
+5	6	2021-08-10 21:36:03	
+
+USERS
+# id	name		birthday_at	created_at		updated_at
+1	Геннадий	1990-10-05	2021-08-05 23:41:03	2021-08-05 23:41:03
+2	Наталья		1984-11-12	2021-08-05 23:41:03	2021-08-05 23:41:03
+3	Александр	1985-05-20	2021-08-05 23:41:03	2021-08-05 23:41:03
+4	Сергей		1988-02-14	2021-08-05 23:41:03	2021-08-05 23:41:03
+5	Иван		1998-01-12	2021-08-05 23:41:03	2021-08-05 23:41:03
+6	Мария		1992-08-29	2021-08-05 23:41:03	2021-08-05 23:41:03
+
+SELECT users.id, users.name, ord.id as ord_id, ord.created_at as ord_created FROM users
+JOIN orders AS ord ON users.id = ord.user_id; 
+
+TASK2
+=========================
+PRODUCTS
+# id	name			description										price	catalog_id	created_at	updated_at
+1	Intel Core i3-8100	Процессор для настольных персональных компьютеров, основанных на платформе Intel.	7890.00		1	2021-08-05 23:41:03	2021-08-05 23:41:03
+2	Intel Core i5-7400	Процессор для настольных персональных компьютеров, основанных на платформе Intel.	12700.00	1	2021-08-05 23:41:03	2021-08-05 23:41:03
+3	AMD FX-8320E		Процессор для настольных персональных компьютеров, основанных на платформе AMD.		4780.00		1	2021-08-05 23:41:03	2021-08-05 23:41:03
+4	AMD FX-8320		Процессор для настольных персональных компьютеров, основанных на платформе AMD.		7120.00		1	2021-08-05 23:41:03	2021-08-05 23:41:03
+5	ASUS ROG MAXIMUS X HERO	Материнская плата ASUS ROG MAXIMUS X HERO, Z370, Socket 1151-V2, DDR4, ATX		19310.00	2	2021-08-05 23:41:03	2021-08-05 23:41:03
+6	Gigabyte H310M S2H	Материнская плата Gigabyte H310M S2H, H310, Socket 1151-V2, DDR4, mATX			4790.00		2	2021-08-05 23:41:03	2021-08-05 23:41:03
+7	MSI B250M GAMING PRO	Материнская плата MSI B250M GAMING PRO, B250, Socket 1151, DDR4, mATX			5060.00		2	2021-08-05 23:41:03	2021-08-05 23:41:03
+
+CATALOGS
+# id	name
+1	Процессоры
+2	Материнские платы
+3	Видеокарты
+4	Жесткие диски
+5	Оперативная память
+
+SELECT products.id, products.name, products.description, cts.name AS catalog_name FROM products
+JOIN catalogs AS cts ON products.catalog_id = cts.id;
+
+TASK3
+=========================
+SELECT flights.id, cit_from.name AS flight_from, cit_to.name as flight_to FROM flights
+JOIN cities AS cit_from ON flihgts.label = cit_from.label
+JOIN cities AS cit_to ON flihgts.label = cit_to.label
+
+
+
