@@ -1,0 +1,88 @@
+TASK1 - Function Hello
+========================
+
+DELIMITER $$
+DROP FUNCTION IF EXISTS smart_hello;
+    CREATE FUNCTION smart_hello ()
+    RETURNS VARCHAR(20)
+    LANGUAGE SQL
+    DETERMINISTIC
+BEGIN
+    DECLARE message, ctime VARCHAR(20) ;
+    SET ctime = CURTIME() ;
+
+    CASE
+        WHEN ctime BETWEEN "06:00:00" AND "12:00:00"  THEN  
+        SET message = "Good morning";
+        WHEN ctime BETWEEN "12:00:00" AND "18:00:00"  THEN 
+        SET message = "Good noon"; 
+        WHEN ctime BETWEEN "18:00:00" AND "23:59:59"  THEN  
+        SET message = "Good evening";
+        WHEN ctime BETWEEN "00:00:00" AND "06:00:00"  THEN  
+        SET message = "Good night";
+        ELSE    
+        SET message = "Time is out";
+    END CASE;
+
+    RETURN message;
+END $$
+
+DELIMITER ;
+
+SELECT smart_hello();
+
+
+TASK2 - Trigger on not double NULL
+===================================
+DELIMITER $$
+
+DROP TRIGGER IF EXISTS check_nulls_update $$
+CREATE TRIGGER check_nulls_update BEFORE UPDATE ON products
+FOR EACH ROW BEGIN
+  IF NEW.name IS NULL AND NEW.description IS NULL THEN
+	SIGNAL SQLSTATE '22004' SET MESSAGE_TEXT = 'Invalid value assignment';
+  END IF;
+END $$
+
+DROP TRIGGER IF EXISTS check_nulls_insert $$
+CREATE TRIGGER check_nulls_insert BEFORE INSERT ON products
+FOR EACH ROW BEGIN
+  IF NEW.name IS NULL AND NEW.description IS NULL THEN
+	SIGNAL SQLSTATE '22004' SET MESSAGE_TEXT = 'Invalid value assignment';
+  END IF;
+END $$
+
+DELIMITER ;
+
+
+UPDATE products 
+SET name = NULL, description = NULL, price = 100, catalog_id = 1
+WHERE price = 5060.00;
+
+
+TASK3 - Fibonachi
+========================
+DELIMITER $$
+DROP FUNCTION IF EXISTS fibonachi;
+CREATE FUNCTION fibonachi (val INT)
+    RETURNS INT
+    DETERMINISTIC
+BEGIN
+    DECLARE result INT DEFAULT 0 ;
+    DECLARE  i INT DEFAULT 0 ;
+    
+    IF val < 1 THEN
+        RETURN 0;
+    END IF;
+        
+    WHILE i <= val DO
+        SET result = result + i;
+        SET i = i + 1;
+    END WHILE;
+    
+    RETURN result;
+END $$
+
+DELIMITER ;
+
+SELECT fibonachi(10);

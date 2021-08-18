@@ -1,0 +1,15 @@
+TASK1
+================
+START TRANSACTION;
+INSERT INTO lesson4.users (lesson4.users.name, birthday_at, created_at, updated_at)
+SELECT sample.users.name, birthday_at, created_at, updated_at FROM sample.users WHERE sample.users.id = 1;
+COMMIT;
+
+TASK2
+================
+CREATE OR REPLACE VIEW goods (product, catalog_name)
+AS SELECT products.name AS product, cts.name AS catalog_name FROM products
+JOIN catalogs AS cts ON products.catalog_id = cts.id;
+
+SELECT * from goods;
+

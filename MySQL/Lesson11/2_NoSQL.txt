@@ -1,0 +1,90 @@
+TASK1
+=========================================================
+Select a collection to calculate number of visits from IP
+
+Я не понял что нужно сделать. 
+Подобрать коллекцию - выбрать из list, hash, set...?
+Коллекцию - чтобы заполнять ее адресами со счетчиком 0 и увеличивать по мере посещений на 1?
+А как это сделать в статике? Откуда берутся посещения и в какой момент?
+
+Если просто забивать ключи значениями, то 
+SET 192.168.1.1 0
+SET 192.168.1.2 0 
+
+INCR 192.168.1.1
+INCR 192.168.1.2
+
+GET 192.168.1.1
+GET 192.168.1.2
+
+Если использовать rjkktrwb, то видимо Хеш с IP:counter
+HMSET visits 192.168.1.1 0
+HMSET visits 192.168.1.2 0
+
+HINCRBY visits 192.168.1.1
+HINCRBY visits 192.168.1.2
+
+HMGET visits 192.168.1.1, 192.168.1.2
+
+TASK2
+========================================
+Search user name by email and vice versa
+Тоже не понял что нужно сделать.
+Предположил, что будем вести список людей с адресами и находить одно по другому.
+Тогда это опять HASH
+
+HMSET user_email 'user1' 'user1@mail.com'
+HMSET user_email 'user1' 'user1@mail.com'
+
+HMGET user_email 'user1'
+HMGET user_email 'user2'
+
+TASK3
+========================================
+Manage Catalogs-Products structure storing in Mongo DB
+[
+  {
+    "catalog_id": 1,
+    "catalog_name": "Процессоры",
+    "products_list": {
+      {
+        "product_id": 1,
+        "name": "Intel Core i3-8100",
+        "desc": "Процессор для настольных персональных компьютеров, основанных на платформе Intel.",
+        "price": 7890.0,
+        "created_at": "2021-08-05 23:41:03",
+        "updated_at": "2021-08-05 23:41:03"
+      },
+      {
+        "product_id": 2,
+        "name": "Intel Core i5-7400",
+        "desc": "Процессор для настольных персональных компьютеров, основанных на платформе Intel.",
+        "price": 12700.00,
+        "created_at": "2021-08-05 23:41:03",
+        "updated_at": "2021-08-05 23:41:03"
+      }
+    }
+  }
+  {
+    "catalog_id": 2,
+    "catalog_name": "Материнские платы",
+    "products_list": {
+      {
+        "product_id": 5,
+        "name": "ASUS ROG MAXIMUS X HERO",
+        "desc": "Материнская плата ASUS ROG MAXIMUS X HERO, Z370, Socket 1151-V2, DDR4, ATX",
+        "price": 7890.0,
+        "created_at": "2021-08-05 23:41:03",
+        "updated_at": "2021-08-05 23:41:03"
+      },
+      {
+        "product_id": 6,
+        "name": "Gigabyte H310M S2H",
+        "desc": "Материнская плата Gigabyte H310M S2H, H310, Socket 1151-V2, DDR4, mATX",
+        "price": 19310.00,
+        "created_at": "2021-08-05 23:41:03",
+        "updated_at": "2021-08-05 23:41:03"
+      }
+    }
+  }
+]
