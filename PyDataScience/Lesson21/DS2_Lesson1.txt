@@ -1,0 +1,6 @@
+1. Task1. When do we need to maximize a precision and when - a recall?
+1.1 Precision examples: blast furnace stat prediction (if we stop it it won't be restarted), banks - issuing credits (avoid lost of money)
+1.2 Recall examples: earchbreaking prognosis (better be prepared), health prognosis (avoid false negative and miss the disease), criminals detection in airports (prevent big problems)
+
+2.  Task2. Why do we use F-score?
+- On edge values it is too average - misses problems ('zeroeing' P or R) and problem's type (FP / FN).
