@@ -1,0 +1,12 @@
+1. Task1. Difference between dependent and independent samples
+- Dependent have links between 2 selected groups by some parameter and we can strictly collate 1 to another by the parameter. And we match results in 2 samples. Such groups have an equal size
+  Patients before and after the treatment, parents and children relationships, 
+- Independent has no links. Groups may have different size
+  Old and young people, big and small cars, woman and man , postman and fishermans
+
+2.  Task2. When do we apply parametrical statistical criterias and when - it's non-parametrical analogs?
+-  The parametric criterion is applied to the parameters of the general population based on the calculation of their estimates based on sample data.
+   Analized variables (analyzed by values) must have a normal distribution. Often used for a reaserch of differences in medium values by Student criteria.
+
+- Non-parametric criterion can be applied to any variables distribution without estimation of the general population.
+  Analyses range or frequencies of values rather the values itselves. Criterias: Chi2, Mann-Whitney, MacNemar
