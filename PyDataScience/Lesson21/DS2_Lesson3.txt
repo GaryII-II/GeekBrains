@@ -1,0 +1,19 @@
+1. Task1. When and for which purposes do we need to average the quality metrics of a classification: micro, macro, weighted?
+- Main classification metrics are for a binary classification. When we use a multiclass classification, the data are treated as a collection of binary decisions, one for each class. 
+  And average binary metric calculations across the set of classes is required
+- Micro averaging calculates common values from all classes with True Positive, False Negative, False Positive. 
+  It is found by dividing the sum of the diagonal cells of the confusion matrix by the sum of all the cells.
+  It makes sense in case of a disbalance of classes
+- Macro averaging calculates the metric for every class. Then, calcultes the unweighted average (simple arithmetic mean). It processes all classes the same way
+- Weighted averaging calculates metrics for each class and obtains a weighted average of the number of samples per class.
+  If precision scores for 3 classes are: class 1 (0.82), class 2 (0.75), and class 3 (0.91), the weighted average will be calculated 
+  by multiplying each score by the number of occurrences of each class and dividing by the total number of samples.
+
+2.  Task2. What is differences are between models xgboost, lightgbm, catboost? What are the main peculiarities of everyone?
+- XGboost splits up to the specified max_depth hyperparameter. Then is starts pruning the tree backwards and removes splits beyond which there is no positive gain.
+  It uses this approach since sometimes a split of no loss reduction may be followed by a split with loss reduction.
+- lightGBM uses a gradient-based one-side sampling (GOSS). It selects the feature-split using all the instances with large gradients (large error) 
+  and a random sample of instances with small gradients. GOSS achieves a good balance between increasing speed by reducing the number of data instances and
+  keeping the accuracy for learned decision trees
+- Catboost uses Minimal Variance Sampling (MVS) - weighted sampling version of Stochastic Gradient Boosting. 
+  The weighted sampling happens in the tree-level but not in the split-level. The observations for each boosting tree are sampled in a way that maximizes the accuracy of split scoring.
