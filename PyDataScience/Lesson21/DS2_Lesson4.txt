@@ -1,0 +1,20 @@
+1. Task1. Explain principles of a regularization operation on Decision Trees
+- Decision Trees are a non-parametric supervised learning method used for classification and regression. It do not require data preparation (touch normalization, blank values, dummy variables)
+- Decision-tree learners can create over-complex trees that do not generalise the data well that is Overfitting. 
+- Hence, Decision Trees make very few assumptions about the training data. If left unconstrained, the tree structure will adapt itself to the training data, fitting it very closely. 
+  Overfitting happens here.
+- To avoid overfitting the training data, we need to restrict the Decision Tree’s freedom during training by a regularization. That is a limitation of the tree size
+- There are few regularization parameters we can use to control the size of decision tree:
+  max_depth : maximum length of path from root to leaf
+  min_sample_split : limit to stop further splitting of nodes when number of observation in node is less than given value.
+  min_sample_leaf: minimum number of sample a leaf node must have. When a leaf node has too few observations further split will result in over-fitting.
+  max_feature_size: maximum number of features evaluated before splitting.
+
+2.  Task2. Which way is Feature Importance calculated in decision tree ensembles?
+- Feature Importance is calculated as the decrease in a Tree node impurity weighted by the probability of reaching that node. 
+  The node probability can be calculated by the number of samples that reach the node, divided by the total number of samples. 
+  The higher the value the more important the feature.
+- For each decision tree, Scikit-learn calculates a nodes importance using Gini Importance, assuming only two child nodes (binary tree)
+- The importance for each feature on a decision tree is calculated and then normalized to a value between 0 and 1 by dividing by the sum of all feature importance values
+- The final feature importance at the ensemble level = average over all the trees. 
+  The sum of the feature’s importance value on each trees is calculated and divided by the total number of trees 
