@@ -10,4 +10,6 @@ Student: Igor Ivanov
 05. Python libs for Data Science. Extended
 06. Data mining and processing in Internet
 07. Introduction to Math Analysis
-
+08. Linear Algebra
+09. Data Analysis
+10. ML in Business
