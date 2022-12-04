@@ -1,5 +1,5 @@
 # GeekBrains
-Geek Brains education tasks
+[Geek Brains](https://gb.ru/) education tasks
 Course: Artificial Intelligence
 Student: Igor Ivanov
 
